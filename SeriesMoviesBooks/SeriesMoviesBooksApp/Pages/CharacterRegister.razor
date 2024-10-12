@@ -1,0 +1,97 @@
+@page "/registro-personajes"
+@using System.ComponentModel.DataAnnotations
+
+<h3>Registro de Personajes</h3>
+
+<EditForm Model="@modelo" OnValidSubmit="@ManejadorSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <InputText id="nombre" @bind-Value="modelo.Nombre" class="form-control" />
+        <ValidationMessage For="@(() => modelo.Nombre)" />
+    </div>
+
+    <div class="form-group">
+        <label for="apodo">Apodo:</label>
+        <InputText id="apodo" @bind-Value="modelo.Apodo" class="form-control" />
+        <ValidationMessage For="@(() => modelo.Apodo)" />
+    </div>
+
+    <div class="form-group">
+        <label for="raza">Raza:</label>
+        <InputText id="raza" @bind-Value="modelo.Raza" class="form-control" />
+        <ValidationMessage For="@(() => modelo.Raza)" />
+    </div>
+
+    <div class="form-group">
+        <label for="fotoUrl">Foto URL:</label>
+        <InputText id="fotoUrl" @bind-Value="modelo.FotoUrl" class="form-control" />
+        <ValidationMessage For="@(() => modelo.FotoUrl)" />
+    </div>
+
+    <div class="form-group">
+        <label for="edad">Edad:</label>
+        <InputNumber id="edad" @bind-Value="modelo.Edad" class="form-control" />
+        <ValidationMessage For="@(() => modelo.Edad)" />
+    </div>
+
+    <div class="form-group">
+        <label for="poderCaracteristico">Poder Característico:</label>
+        <InputText id="poderCaracteristico" @bind-Value="modelo.PoderCaracteristico" class="form-control" />
+        <ValidationMessage For="@(() => modelo.PoderCaracteristico)" />
+    </div>
+
+    <div class="form-group">
+        <label for="serieSeleccionada">Serie/Película/Libro:</label>
+        <InputSelect id="serieSeleccionada" @bind-Value="modelo.SerieSeleccionada" class="form-control">
+            <option value="">Seleccione una opción</option>
+            @foreach (var serie in series)
+            {
+                <option value="@serie">@serie</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => modelo.SerieSeleccionada)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrar Personaje</button>
+</EditForm>
+
+@code {
+    private PersonajeModelo modelo = new PersonajeModelo();
+    private List<string> series = new List<string> { "Buscnado a nemo", "Toy story"}; // Ejemplo de series/películas/libros
+
+    private void ManejadorSubmit()
+    {
+        // Aquí iría la lógica para procesar el formulario
+        Console.WriteLine($"Personaje registrado: {modelo.Nombre} para {modelo.SerieSeleccionada}");
+        // Reiniciar el modelo después del envío
+        modelo = new PersonajeModelo();
+    }
+
+    public class PersonajeModelo
+    {
+        [Required(ErrorMessage = "El nombre es requerido")]
+        public string Nombre { get; set; }
+
+        public string Apodo { get; set; }
+
+        [Required(ErrorMessage = "La raza es requerida")]
+        public string Raza { get; set; }
+
+        [Required(ErrorMessage = "La URL de la foto es requerida")]
+        [Url(ErrorMessage = "Por favor, ingrese una URL válida")]
+        public string FotoUrl { get; set; }
+
+        [Required(ErrorMessage = "La edad es requerida")]
+        [Range(0, 1000, ErrorMessage = "La edad debe estar entre 0 y 1000")]
+        public int Edad { get; set; }
+
+        [Required(ErrorMessage = "El poder característico es requerido")]
+        public string PoderCaracteristico { get; set; }
+
+        [Required(ErrorMessage = "Debe seleccionar una serie, película o libro")]
+        public string SerieSeleccionada { get; set; }
+    }
+}

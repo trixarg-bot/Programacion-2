@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeriesMoviesBooksApp", "SeriesMoviesBooksApp\SeriesMoviesBooksApp.csproj", "{77479690-224E-41CF-9508-5A9078F2F066}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntertainmentApi", "EntertainmentApi\EntertainmentApi.csproj", "{ED82906B-5AC5-4664-A9ED-670229D6185B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77479690-224E-41CF-9508-5A9078F2F066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77479690-224E-41CF-9508-5A9078F2F066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77479690-224E-41CF-9508-5A9078F2F066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77479690-224E-41CF-9508-5A9078F2F066}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED82906B-5AC5-4664-A9ED-670229D6185B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED82906B-5AC5-4664-A9ED-670229D6185B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED82906B-5AC5-4664-A9ED-670229D6185B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED82906B-5AC5-4664-A9ED-670229D6185B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0E85CBA-43CF-4524-9D16-BE45C46F650F}
+	EndGlobalSection
+EndGlobal

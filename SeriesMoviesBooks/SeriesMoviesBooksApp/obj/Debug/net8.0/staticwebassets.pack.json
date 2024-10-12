@@ -1,0 +1,65 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/SeriesMoviesBooksApp/bin/Debug/net8.0/wwwroot/_framework/blazor.webassembly.js",
+      "PackagePath": "staticwebassets/_framework/blazor.webassembly.js"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/SeriesMoviesBooksApp/obj/Debug/net8.0/compressed/mh6ijcugzj.gz",
+      "PackagePath": "staticwebassets/_framework/blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/SeriesMoviesBooksApp/obj/Debug/net8.0/scopedcss/bundle/SeriesMoviesBooksApp.styles.css",
+      "PackagePath": "staticwebassets/SeriesMoviesBooksApp.styles.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/SeriesMoviesBooksApp/wwwroot/css/app.css",
+      "PackagePath": "staticwebassets/css/app.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/SeriesMoviesBooksApp/wwwroot/css/appsettings.json",
+      "PackagePath": "staticwebassets/css/appsettings.json"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/SeriesMoviesBooksApp/wwwroot/css/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/css/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/SeriesMoviesBooksApp/wwwroot/css/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/SeriesMoviesBooksApp/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/SeriesMoviesBooksApp/wwwroot/icon-192.png",
+      "PackagePath": "staticwebassets/icon-192.png"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/SeriesMoviesBooksApp/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/SeriesMoviesBooksApp/wwwroot/sample-data/weather.json",
+      "PackagePath": "staticwebassets/sample-data/weather.json"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.SeriesMoviesBooksApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.SeriesMoviesBooksApp.props",
+      "PackagePath": "build\\SeriesMoviesBooksApp.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.SeriesMoviesBooksApp.props",
+      "PackagePath": "buildMultiTargeting\\SeriesMoviesBooksApp.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.SeriesMoviesBooksApp.props",
+      "PackagePath": "buildTransitive\\SeriesMoviesBooksApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

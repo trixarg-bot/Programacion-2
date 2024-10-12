@@ -1,0 +1,99 @@
+@page "/registro-entretenimiento"
+@using System.ComponentModel.DataAnnotations
+@inject EntertainmentService EntertainmentService
+@inject NavigationManager NavigationManager
+
+<h3>Registro de Series, Películas o Libros</h3>
+
+<EditForm Model="@modelo" OnValidSubmit="@ManejadorSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <InputText id="nombre" @bind-Value="modelo.Nombre" class="form-control" />
+        <ValidationMessage For="@(() => modelo.Nombre)" />
+    </div>
+
+    <div class="form-group">
+        <label for="pais">País:</label>
+        <InputText id="pais" @bind-Value="modelo.Pais" class="form-control" />
+        <ValidationMessage For="@(() => modelo.Pais)" />
+    </div>
+
+    <div class="form-group">
+        <label for="idioma">Idioma:</label>
+        <InputText id="idioma" @bind-Value="modelo.Idioma" class="form-control" />
+        <ValidationMessage For="@(() => modelo.Idioma)" />
+    </div>
+
+    <div class="form-group">
+        <label for="fotoUrl">Foto URL:</label>
+        <InputText id="fotoUrl" @bind-Value="modelo.FotoUrl" class="form-control" />
+        <ValidationMessage For="@(() => modelo.FotoUrl)" />
+    </div>
+
+    <div class="form-group">
+        <label for="resumen">Resumen:</label>
+        <InputTextArea id="resumen" @bind-Value="modelo.Resumen" class="form-control" rows="5" />
+        <ValidationMessage For="@(() => modelo.Resumen)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" @onclick="RegisterUser">Registrar</button>
+</EditForm>
+@if (showSuccessMessage)
+{
+    <p class="text-success">¡Registro exitoso!</p>
+}
+
+@code {
+    private SeriesMovieBook modelo = new SeriesMovieBook();
+    private bool showSuccessMessage = false;
+   
+    private void RegisterUser() {
+       showSuccessMessage = true;
+    }
+
+    private async Task ManejadorSubmit()
+    {
+        try
+        {
+            var response = await EntertainmentService.CreateSeriesMovieBookAsync(modelo);
+            if (response.IsSuccessStatusCode)
+            {
+                // Registro exitoso, redirigir a la lista o mostrar un mensaje
+                NavigationManager.NavigateTo("registro-personajes");
+            }
+            else
+            {
+                // Manejar el error, tal vez mostrar un mensaje al usuario
+                Console.WriteLine($"Error al registrar: {response.StatusCode}");
+            }
+        }
+        catch (Exception ex)
+        {
+            // Manejar excepciones, tal vez mostrar un mensaje al usuario
+            Console.WriteLine($"Excepción al registrar: {ex.Message}");
+        }
+    }
+
+    public class EntretenimientoModelo
+    {
+        [Required(ErrorMessage = "El nombre es requerido")]
+        public string Nombre { get; set; }
+
+        [Required(ErrorMessage = "El país es requerido")]
+        public string Pais { get; set; }
+
+        [Required(ErrorMessage = "El idioma es requerido")]
+        public string Idioma { get; set; }
+
+        [Required(ErrorMessage = "La URL de la foto es requerida")]
+        [Url(ErrorMessage = "Por favor, ingrese una URL válida")]
+        public string FotoUrl { get; set; }
+
+        [Required(ErrorMessage = "El resumen es requerido")]
+        [MinLength(10, ErrorMessage = "El resumen debe tener al menos 10 caracteres")]
+        public string Resumen { get; set; }
+    }
+}
