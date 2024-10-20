@@ -1,0 +1,196 @@
+/* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.console-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2a2a2a;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.console-title {
+    text-align: center;
+    color: #00c3e3;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(0, 195, 227, 0.5);
+}
+
+/* Estilos de formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #e60012;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #00c3e3;
+    background-color: #3a3a3a;
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 5px #00c3e3;
+}
+
+/* Botón de envío */
+.btn-primary {
+    background-color: #e60012;
+    border: none;
+    padding: 10px 20px;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #ff3c28;
+}
+
+/* Mensajes de validación */
+.validation-message {
+    color: #ff3c28;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+/* Efectos adicionales */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px #00c3e3;
+    }
+    50% {
+        box-shadow: 0 0 20px #00c3e3;
+    }
+    100% {
+        box-shadow: 0 0 5px #00c3e3;
+    }
+}
+
+.form-control:focus {
+    animation: glow 1.5s infinite;
+}
+
+/* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.console-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 195, 227, 0.5);
+}
+
+.console-title {
+    text-align: center;
+    color: #00c3e3;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(0, 195, 227, 0.5);
+}
+
+/* Estilos de tabla */
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin-top: 20px;
+}
+
+.table th {
+    text-align: left;
+    padding: 10px;
+    background-color: #00c3e3;
+    color: #121212;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.table td {
+    padding: 10px;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.table tr:hover td {
+    background-color: #3a3a3a;
+}
+
+/* Estilos para los estados de las plataformas */
+.estado-activo {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.estado-inactivo {
+    color: #f44336;
+    font-weight: bold;
+}
+
+/* Estilos para los botones */
+.btn {
+    border: none;
+    padding: 8px 16px;
+    margin-right: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #e60012;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #ff3c28;
+}
+
+.btn-info {
+    background-color: #00c3e3;
+    color: #121212;
+}
+
+.btn-info:hover {
+    background-color: #00d8fa;
+}
+
+.btn-danger {
+    background-color: #f44336;
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    background-color: #ff5722;
+}
+
+/* Efectos adicionales */
+.btn:hover, .table td:hover {
+    box-shadow: 0 0 10px rgba(0, 195, 227, 0.5);
+}

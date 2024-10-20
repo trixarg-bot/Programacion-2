@@ -1,0 +1,63 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = Tarea5
+build_property.RootNamespace = Tarea5
+build_property.ProjectDir = /Users/eduardoliriano/codigos/Programacion2/Tarea5/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/eduardoliriano/codigos/Programacion2/Tarea5
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/eduardoliriano/codigos/Programacion2/Tarea5/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/Programacion2/Tarea5/Pages/GestionPlataformas.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvR2VzdGlvblBsYXRhZm9ybWFzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/Programacion2/Tarea5/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/Programacion2/Tarea5/Pages/ListaVideojuegos.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTGlzdGFWaWRlb2p1ZWdvcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/Programacion2/Tarea5/Pages/RegistroPersonaje.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0cm9QZXJzb25hamUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/Programacion2/Tarea5/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/Programacion2/Tarea5/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/Programacion2/Tarea5/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/Programacion2/Tarea5/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0L01haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-sqx6mm6fd3
+
+[/Users/eduardoliriano/codigos/Programacion2/Tarea5/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0L05hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-vvj0hokb22

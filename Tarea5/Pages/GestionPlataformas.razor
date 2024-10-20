@@ -1,0 +1,118 @@
+@page "/gestion-plataformas"
+@inject PlataformaService PlataformaService
+@inject IJSRuntime JSRuntime
+
+<div class="console-container">
+    <h1 class="console-title">Gestión de Plataformas</h1>
+
+    <button class="btn btn-primary mb-3" @onclick="MostrarFormularioCreacion">Nueva Plataforma</button>
+
+    @if (mostrarFormulario)
+    {
+        <div class="form-container mb-4">
+            <h2>@(modoEdicion ? "Editar" : "Crear") Plataforma</h2>
+            <EditForm Model="@plataformaActual" OnValidSubmit="GuardarPlataforma">
+                <DataAnnotationsValidator />
+
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <InputText id="nombre" @bind-Value="plataformaActual.Nombre" class="form-control" />
+                    <ValidationMessage For="@(() => plataformaActual.Nombre)" />
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <InputCheckbox @bind-Value="plataformaActual.Activa" />
+                        Activa
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <button type="button" class="btn btn-secondary" @onclick="CancelarEdicion">Cancelar</button>
+            </EditForm>
+        </div>
+    }
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var plataforma in PlataformaService.ObtenerTodasLasPlataformas())
+            {
+                <tr>
+                    <td>@plataforma.Nombre</td>
+                    <td class="@(plataforma.Activa ? "estado-activo" : "estado-inactivo")">
+                        @(plataforma.Activa ? "Activa" : "Inactiva")
+                    </td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => EditarPlataforma(plataforma)">Editar</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => EliminarPlataforma(plataforma.Id)">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    private bool mostrarFormulario = false;
+    private bool modoEdicion = false;
+    private Plataforma plataformaActual = new Plataforma();
+
+    private void MostrarFormularioCreacion()
+    {
+        plataformaActual = new Plataforma();
+        mostrarFormulario = true;
+        modoEdicion = false;
+    }
+
+    private void EditarPlataforma(Plataforma plataforma)
+    {
+        plataformaActual = new Plataforma
+        {
+            Id = plataforma.Id,
+            Nombre = plataforma.Nombre,
+            Activa = plataforma.Activa
+        };
+        mostrarFormulario = true;
+        modoEdicion = true;
+    }
+
+    private async Task GuardarPlataforma()
+    {
+        if (modoEdicion)
+        {
+            PlataformaService.ActualizarPlataforma(plataformaActual);
+            await JSRuntime.InvokeVoidAsync("alert", "Plataforma actualizada con éxito");
+        }
+        else
+        {
+            PlataformaService.CrearPlataforma(plataformaActual);
+            await JSRuntime.InvokeVoidAsync("alert", "Plataforma creada con éxito");
+        }
+
+        mostrarFormulario = false;
+        plataformaActual = new Plataforma();
+    }
+
+    private void CancelarEdicion()
+    {
+        mostrarFormulario = false;
+        plataformaActual = new Plataforma();
+    }
+
+    private async Task EliminarPlataforma(int id)
+    {
+        bool confirmado = await JSRuntime.InvokeAsync<bool>("confirm", "¿Estás seguro de que quieres eliminar esta plataforma?");
+        if (confirmado)
+        {
+            PlataformaService.EliminarPlataforma(id);
+            await JSRuntime.InvokeVoidAsync("alert", "Plataforma eliminada con éxito");
+        }
+    }
+}

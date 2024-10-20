@@ -1,0 +1,53 @@
+@page "/lista-videojuegos"
+@inject ServicioVideojuego ServicioVideojuego
+@implements IDisposable
+
+<div class="console-container">
+    <h1 class="console-title">Lista de Videojuegos</h1>
+
+    @if (!videojuegos.Any())
+    {
+        <p>No hay videojuegos registrados.</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Desarrollador</th>
+                    <th>Plataforma</th>
+                    <th>Género</th>
+                    <th>Fecha de Lanzamiento</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var juego in videojuegos)
+                {
+                    <tr>
+                        <td>@juego.Nombre</td>
+                        <td>@juego.Desarrollador</td>
+                        <td>@juego.Plataforma</td>
+                        <td>@juego.Genero</td>
+                        <td>@juego.FechaLanzamiento.ToShortDateString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@code {
+    private List<Videojuego> videojuegos;
+
+    protected override void OnInitialized()
+    {
+        videojuegos = ServicioVideojuego.ObtenerTodosLosVideojuegos();
+        ServicioVideojuego.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        ServicioVideojuego.OnChange -= StateHasChanged;
+    }
+}

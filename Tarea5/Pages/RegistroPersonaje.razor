@@ -1,0 +1,109 @@
+@page "/registro-personajes"
+@inject PersonajeService PersonajeService
+@inject IJSRuntime JSRuntime
+
+<div class="console-container">
+    <h1 class="console-title">Registro de Personajes</h1>
+
+    <EditForm Model="@nuevoPersonaje" OnValidSubmit="GuardarPersonaje">
+        <DataAnnotationsValidator />
+
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <InputText id="nombre" @bind-Value="nuevoPersonaje.Nombre" class="form-control" />
+            <ValidationMessage For="@(() => nuevoPersonaje.Nombre)" />
+        </div>
+
+        <div class="form-group">
+            <label for="alias">Alias (opcional):</label>
+            <InputText id="alias" @bind-Value="nuevoPersonaje.Alias" class="form-control" />
+            <ValidationMessage For="@(() => nuevoPersonaje.Alias)" />
+        </div>
+
+        <div class="form-group">
+            <label for="rolEnJuego">Rol en el juego:</label>
+            <InputText id="rolEnJuego" @bind-Value="nuevoPersonaje.RolEnJuego" class="form-control" />
+            <ValidationMessage For="@(() => nuevoPersonaje.RolEnJuego)" />
+        </div>
+
+        <div class="form-group">
+            <label for="habilidadEspecial">Habilidad especial (opcional):</label>
+            <InputText id="habilidadEspecial" @bind-Value="nuevoPersonaje.HabilidadEspecial" class="form-control" />
+            <ValidationMessage For="@(() => nuevoPersonaje.HabilidadEspecial)" />
+        </div>
+
+        <div class="form-group">
+            <label for="armaFavorita">Arma favorita (opcional):</label>
+            <InputText id="armaFavorita" @bind-Value="nuevoPersonaje.ArmaFavorita" class="form-control" />
+            <ValidationMessage For="@(() => nuevoPersonaje.ArmaFavorita)" />
+        </div>
+
+        <div class="form-group">
+            <label for="nivelDePoder">Nivel de poder (1-100):</label>
+            <InputNumber id="nivelDePoder" @bind-Value="nuevoPersonaje.NivelDePoder" class="form-control" />
+            <ValidationMessage For="@(() => nuevoPersonaje.NivelDePoder)" />
+        </div>
+
+        <div class="form-group">
+            <label for="imagenUrl">URL de la imagen del personaje:</label>
+            <InputText id="imagenUrl" @bind-Value="nuevoPersonaje.ImagenUrl" class="form-control" />
+            <ValidationMessage For="@(() => nuevoPersonaje.ImagenUrl)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrar Personaje</button>
+    </EditForm>
+
+    <h2 class="mt-4">Personajes Registrados</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Alias</th>
+                <th>Rol</th>
+                <th>Nivel de Poder</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var personaje in PersonajeService.ObtenerTodosLosPersonajes())
+            {
+                <tr>
+                    <td>@personaje.Nombre</td>
+                    <td>@personaje.Alias</td>
+                    <td>@personaje.RolEnJuego</td>
+                    <td>@personaje.NivelDePoder</td>
+                    <td>
+                        <button class="btn btn-info btn-sm" @onclick="() => EditarPersonaje(personaje)">Editar</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => EliminarPersonaje(personaje.Id)">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    private Personaje nuevoPersonaje = new Personaje();
+
+    private async Task GuardarPersonaje()
+    {
+        PersonajeService.CrearPersonaje(nuevoPersonaje);
+        await JSRuntime.InvokeVoidAsync("alert", "Personaje registrado con éxito");
+        nuevoPersonaje = new Personaje();
+    }
+
+    private void EditarPersonaje(Personaje personaje)
+    {
+        // Implementar lógica de edición
+    }
+
+    private async Task EliminarPersonaje(int id)
+    {
+        bool confirmado = await JSRuntime.InvokeAsync<bool>("confirm", "¿Estás seguro de que quieres eliminar este personaje?");
+        if (confirmado)
+        {
+            PersonajeService.EliminarPersonaje(id);
+            await JSRuntime.InvokeVoidAsync("alert", "Personaje eliminado con éxito");
+        }
+    }
+}

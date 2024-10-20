@@ -1,0 +1,65 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/Tarea5/bin/Debug/net8.0/wwwroot/_framework/blazor.webassembly.js",
+      "PackagePath": "staticwebassets/_framework/blazor.webassembly.js"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/Tarea5/obj/Debug/net8.0/compressed/mh6ijcugzj.gz",
+      "PackagePath": "staticwebassets/_framework/blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/Tarea5/obj/Debug/net8.0/scopedcss/bundle/Tarea5.styles.css",
+      "PackagePath": "staticwebassets/Tarea5.styles.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/Tarea5/wwwroot/css/app.css",
+      "PackagePath": "staticwebassets/css/app.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/Tarea5/wwwroot/css/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/css/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/Tarea5/wwwroot/css/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/css/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/Tarea5/wwwroot/css/console-style.css",
+      "PackagePath": "staticwebassets/css/console-style.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/Tarea5/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/Tarea5/wwwroot/icon-192.png",
+      "PackagePath": "staticwebassets/icon-192.png"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/Tarea5/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/Programacion2/Tarea5/wwwroot/sample-data/weather.json",
+      "PackagePath": "staticwebassets/sample-data/weather.json"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Tarea5.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.Tarea5.props",
+      "PackagePath": "build\\Tarea5.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.Tarea5.props",
+      "PackagePath": "buildMultiTargeting\\Tarea5.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Tarea5.props",
+      "PackagePath": "buildTransitive\\Tarea5.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

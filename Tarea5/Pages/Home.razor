@@ -1,0 +1,74 @@
+﻿@page "/"
+@inject NavigationManager NavigationManager
+@inject ServicioVideojuego ServicioVideojuego
+@using System.ComponentModel.DataAnnotations
+
+<div class="console-container">
+    <h1 class="console-title">Registrar Nuevo Videojuego</h1>
+
+    <EditForm Model="@nuevoJuego" OnValidSubmit="@GuardarJuego">
+        <DataAnnotationsValidator />
+
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <InputText id="nombre" @bind-Value="nuevoJuego.Nombre" class="form-control" />
+            <ValidationMessage For="@(() => nuevoJuego.Nombre)" />
+        </div>
+
+        <div class="form-group">
+            <label for="desarrollador">Desarrollador:</label>
+            <InputText id="desarrollador" @bind-Value="nuevoJuego.Desarrollador" class="form-control" />
+            <ValidationMessage For="@(() => nuevoJuego.Desarrollador)" />
+        </div>
+
+        <div class="form-group">
+            <label for="plataforma">Plataforma:</label>
+            <InputSelect id="plataforma" @bind-Value="nuevoJuego.Plataforma" class="form-control">
+                <option value="">Selecciona una plataforma</option>
+                <option value="Switch">Nintendo Switch</option>
+                <option value="PlayStation">PlayStation</option>
+                <option value="Xbox">Xbox</option>
+                <option value="PC">PC</option>
+            </InputSelect>
+            <ValidationMessage For="@(() => nuevoJuego.Plataforma)" />
+        </div>
+
+        <div class="form-group">
+            <label for="genero">Género:</label>
+            <InputText id="genero" @bind-Value="nuevoJuego.Genero" class="form-control" />
+            <ValidationMessage For="@(() => nuevoJuego.Genero)" />
+        </div>
+
+        <div class="form-group">
+            <label for="fechaLanzamiento">Fecha de Lanzamiento:</label>
+            <InputDate id="fechaLanzamiento" @bind-Value="nuevoJuego.FechaLanzamiento" class="form-control" />
+            <ValidationMessage For="@(() => nuevoJuego.FechaLanzamiento)" />
+        </div>
+
+        <div class="form-group">
+            <label for="imagenPortada">URL de la Imagen de Portada:</label>
+            <InputText id="imagenPortada" @bind-Value="nuevoJuego.ImagenPortada" class="form-control" />
+            <ValidationMessage For="@(() => nuevoJuego.ImagenPortada)" />
+        </div>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <InputTextArea id="descripcion" @bind-Value="nuevoJuego.Descripcion" class="form-control" rows="4" />
+            <ValidationMessage For="@(() => nuevoJuego.Descripcion)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Juego</button>
+    </EditForm>
+</div>
+
+@code {
+    private Videojuego nuevoJuego = new Videojuego();
+
+    private void GuardarJuego()
+    {
+        ServicioVideojuego.CrearVideojuego(nuevoJuego);
+        Console.WriteLine("Juego guardado: " + nuevoJuego.Nombre);
+        nuevoJuego = new Videojuego(); // Reinicia el formulario
+        NavigationManager.NavigateTo("/lista-videojuegos");
+    }
+}
