@@ -1,0 +1,91 @@
+@page "/perfil-agente"
+@using System.Net.Http.Json
+@inject HttpClient Http
+@using Blazored.LocalStorage
+@inject NavigationManager NavigationManager
+@inject ILocalStorageService LocalStorage
+
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-lg">
+        <div class="text-center">
+            <h2 class="text-3xl font-bold text-gray-900">Perfil del Agente</h2>
+        </div>
+
+        @if (isLoggedIn)
+        {
+            @if (agente != null)
+            {
+                <div class="mt-8 space-y-6">
+                    <div class="rounded-md shadow-sm space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Cédula</label>
+                            <p class="mt-1 text-sm text-gray-900">@agente.Cedula</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Nombre</label>
+                            <p class="mt-1 text-sm text-gray-900">@agente.Nombre</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Apellido</label>
+                            <p class="mt-1 text-sm text-gray-900">@agente.Apellido</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Teléfono</label>
+                            <p class="mt-1 text-sm text-gray-900">@agente.Telefono</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Correo</label>
+                            <p class="mt-1 text-sm text-gray-900">@agente.Correo</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="/registro-incidencia"
+                    class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 inline-block text-center">
+                    Registrar Incidencia
+                </a>
+                <a href="/buscar-incidencia"
+                    class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Buscar Incidencia
+                </a>
+            }
+            else
+            {
+                <p class="mt-8 text-center text-sm text-gray-500">Cargando perfil del agente...</p>
+            }
+        }
+        else
+        {
+            <p class="mt-8 text-center text-sm text-gray-500">Inicia sesión para ver tu perfil.</p>
+        }
+    </div>
+</div>
+
+@code {
+    private UsuarioResponseDto agente;
+    private bool isLoggedIn = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var agenteString = await LocalStorage.GetItemAsStringAsync("user");
+        if (!string.IsNullOrEmpty(agenteString))
+        {
+            agente = System.Text.Json.JsonSerializer.Deserialize<UsuarioResponseDto>(agenteString);
+            Console.WriteLine($"Telefono:{agente.Telefono}");
+            isLoggedIn = true;
+        }
+    }
+
+    public class UsuarioResponseDto
+    {
+        public int Id { get; set; }
+        public string Cedula { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Telefono { get; set; }
+        public string Correo { get; set; }
+    }
+}

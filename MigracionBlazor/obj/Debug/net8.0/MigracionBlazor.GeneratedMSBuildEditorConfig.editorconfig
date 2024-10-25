@@ -1,0 +1,75 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = MigracionBlazor
+build_property.RootNamespace = MigracionBlazor
+build_property.ProjectDir = /Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor/Pages/BuscarIncidencias.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQnVzY2FySW5jaWRlbmNpYXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor/Pages/EstadoClima.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXN0YWRvQ2xpbWEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor/Pages/LogIn.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9nSW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor/Pages/Noticias.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTm90aWNpYXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor/Pages/PerfilAgente.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUGVyZmlsQWdlbnRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor/Pages/Register.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor/Pages/RegistroIncidencias.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0cm9JbmNpZGVuY2lhcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor/Pages/Weather.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvV2VhdGhlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0L01haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-993iz2e418
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/MigracionBlazor/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0L05hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-h2dq3agl89

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EntertainmentApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+612bbf9f296afc03d927b5cfa1d9e587e6030a3d")]
 [assembly: System.Reflection.AssemblyProductAttribute("EntertainmentApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EntertainmentApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

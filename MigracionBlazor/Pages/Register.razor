@@ -1,0 +1,174 @@
+@page "/registro-agente"
+@using System.ComponentModel.DataAnnotations
+@using System.Net.Http.Json
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-lg">
+        <div class="text-center">
+            <h2 class="text-3xl font-bold text-gray-900">Registro de Agente de Migración</h2>
+        </div>
+
+        <EditForm Model="@registroModel" OnValidSubmit="HandleRegistro" class="mt-8 space-y-6">
+            <DataAnnotationsValidator />
+
+            <div class="rounded-md shadow-sm space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Cédula
+                    </label>
+                    <InputText 
+                        @bind-Value="registroModel.Cedula"
+                        class="appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Ingrese la cédula" />
+                    <ValidationMessage For="@(() => registroModel.Cedula)" class="text-red-500 text-sm" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Nombre
+                    </label>
+                    <InputText 
+                        @bind-Value="registroModel.Nombre"
+                        class="appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Ingrese el nombre" />
+                    <ValidationMessage For="@(() => registroModel.Nombre)" class="text-red-500 text-sm" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Apellido
+                    </label>
+                    <InputText 
+                        @bind-Value="registroModel.Apellido"
+                        class="appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Ingrese el apellido" />
+                    <ValidationMessage For="@(() => registroModel.Apellido)" class="text-red-500 text-sm" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Teléfono
+                    </label>
+                    <InputText 
+                        @bind-Value="registroModel.Telefono"
+                        class="appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Ingrese el teléfono" />
+                    <ValidationMessage For="@(() => registroModel.Telefono)" class="text-red-500 text-sm" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Correo
+                    </label>
+                    <InputText 
+                        @bind-Value="registroModel.Correo"
+                        class="appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Ingrese el correo" />
+                    <ValidationMessage For="@(() => registroModel.Correo)" class="text-red-500 text-sm" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Contraseña
+                    </label>
+                    <InputText 
+                        @bind-Value="registroModel.Clave"
+                        type="password"
+                        class="appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Ingrese la contraseña" />
+                    <ValidationMessage For="@(() => registroModel.Clave)" class="text-red-500 text-sm" />
+                </div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+                    @errorMessage
+                </div>
+            }
+
+            <button type="submit" disabled="@isLoading" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                @if (isLoading)
+                {
+                    <span>Registrando...</span>
+                }
+                else
+                {
+                    <span>Registrar</span>
+                }
+            </button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private RegistroModel registroModel = new();
+    private string errorMessage = string.Empty;
+    private bool isLoading = false;
+
+    private async Task HandleRegistro()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = string.Empty;
+
+            var response = await Http.PostAsJsonAsync("api/Usuarios/registro", registroModel);
+
+            if (response.IsSuccessStatusCode)
+            {
+                NavigationManager.NavigateTo("/login");
+            }
+            else
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    errorMessage = "Ya existe un agente con esta cedula o correo. Favor de ingresar unas credenciales nuevas.";
+                }
+                else
+                {
+                    errorMessage = $"Error: {error}";
+                }
+
+                Console.WriteLine($"Error response: {error}");
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al registrar: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    public class RegistroModel
+    {
+        [Required(ErrorMessage = "La cédula es requerida")]
+        [StringLength(11, ErrorMessage = "La cédula debe tener 11 caracteres")]
+        public string Cedula { get; set; }
+
+        [Required(ErrorMessage = "El nombre es requerido")]
+        [StringLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
+        public string Nombre { get; set; }
+
+        [Required(ErrorMessage = "El apellido es requerido")]
+        [StringLength(50, ErrorMessage = "El apellido no debe exceder los 50 caracteres")]
+        public string Apellido { get; set; }
+
+        [Required(ErrorMessage = "El teléfono es requerido")]
+        [Phone(ErrorMessage = "El teléfono no es válido")]
+        public string Telefono { get; set; }
+
+        [Required(ErrorMessage = "El correo es requerido")]
+        [EmailAddress(ErrorMessage = "El correo no es válido")]
+        public string Correo { get; set; }
+
+        [Required(ErrorMessage = "La contraseña es requerida")]
+        public string Clave { get; set; }
+    }
+}

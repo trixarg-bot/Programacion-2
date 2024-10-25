@@ -1,0 +1,115 @@
+﻿<div class="sidebar">
+    <nav class="flex-column">
+        <div class="navbar-brand">
+            <i class="fas fa-globe me-2"></i>
+            MigracionBlazor
+        </div>
+
+        <div class="nav-item">
+            <NavLink class="nav-link" href="login" Match="NavLinkMatch.All">
+                <i class="fas fa-home"></i>
+                <span class="ms-2">Login</span>
+            </NavLink>
+        </div>
+
+        @* <div class="nav-item">
+            <NavLink class="nav-link" href="registro-agente">
+                <i class="fas fa-user-plus"></i>
+                <span class="ms-2">Registro</span>
+            </NavLink>
+        </div>
+
+        <div class="nav-item">
+            <NavLink class="nav-link" href="registro-incidencia">
+                <i class="fas fa-exclamation-circle"></i>
+                <span class="ms-2">Incidencia</span>
+            </NavLink>
+        </div> *@
+
+        <div class="nav-item">
+            <NavLink class="nav-link" href="estado-clima">
+                <i class="fas fa-cloud-sun"></i>
+                <span class="ms-2">Clima</span>
+            </NavLink>
+        </div>
+
+        <div class="nav-item">
+            <NavLink class="nav-link" href="noticias">
+                <i class="fas fa-newspaper"></i>
+                <span class="ms-2">Noticias</span>
+            </NavLink>
+        </div>
+
+        @* <div class="nav-item">
+            <NavLink class="nav-link" href="perfil-agente">
+                <i class="fas fa-user-circle"></i>
+                <span class="ms-2">Perfil</span>
+            </NavLink>
+        </div> *@
+    </nav>
+</div>
+
+
+<style>
+    .sidebar {
+        background: linear-gradient(180deg, #1a237e 0%, #283593 100%);
+        color: #ffffff;
+        min-height: 100vh;
+        padding: 1rem;
+        width: 250px;
+    }
+
+    .navbar-brand {
+        font-size: 1.25rem;
+        font-weight: 600;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-item {
+        margin-bottom: 0.5rem;
+    }
+
+    .nav-link {
+        color: rgba(255, 255, 255, 0.8);
+        padding: 0.75rem 1rem;
+        border-radius: 0.375rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        font-weight: 500;
+    }
+
+    .nav-link i {
+        width: 1.5rem;
+        font-size: 1.1rem;
+    }
+
+    .ms-2 {
+        margin-left: 0.5rem;
+    }
+</style>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

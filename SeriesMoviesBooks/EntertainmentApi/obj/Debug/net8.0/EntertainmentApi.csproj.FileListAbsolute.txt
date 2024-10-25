@@ -132,3 +132,4 @@
 /Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/EntertainmentApi/obj/Debug/net8.0/EntertainmentApi.pdb
 /Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/EntertainmentApi/obj/Debug/net8.0/EntertainmentApi.genruntimeconfig.cache
 /Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/EntertainmentApi/obj/Debug/net8.0/ref/EntertainmentApi.dll
+/Users/eduardoliriano/codigos/Programacion2/SeriesMoviesBooks/EntertainmentApi/obj/Debug/net8.0/EntertainmentApi.sourcelink.json

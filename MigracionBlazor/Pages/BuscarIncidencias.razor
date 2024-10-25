@@ -1,0 +1,204 @@
+@page "/buscar-incidencia"
+@using System.Net.Http.Json
+@inject HttpClient Http
+
+<div class="min-h-screen bg-gray-100 py-6 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <!-- Encabezado -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">
+                <i class="fas fa-search mr-2"></i>
+                Buscar Incidencia
+            </h1>
+            <p class="mt-2 text-gray-600">Ingrese el ID de la incidencia para ver sus detalles</p>
+        </div>
+
+        <!-- Formulario de búsqueda -->
+        <div class="bg-white shadow-lg rounded-lg p-6 mb-8">
+            <div class="flex gap-4">
+                <div class="flex-grow">
+                    <input type="number" 
+                           @bind="incidenciaId" 
+                           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                           placeholder="Ingrese el ID de la incidencia" />
+                </div>
+                <button @onclick="BuscarIncidencia" 
+                        class="px-6 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        disabled="@isLoading">
+                    @if (isLoading)
+                    {
+                        <span class="inline-flex items-center">
+                            <div class="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full mr-2"></div>
+                            Buscando...
+                        </span>
+                    }
+                    else
+                    {
+                        <span>Buscar</span>
+                    }
+                </button>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrEmpty(error))
+        {
+            <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-8">
+                <div class="flex items-center">
+                    <i class="fas fa-exclamation-circle text-red-400 mr-2"></i>
+                    <span class="text-red-700">@error</span>
+                </div>
+            </div>
+        }
+
+        @if (incidencias != null && incidencias.Any())
+        {
+            var incidencia = incidencias.First();
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div class="bg-indigo-600 px-6 py-4">
+                    <h2 class="text-xl font-semibold text-white">Detalles de la Incidencia #@incidencia.Id</h2>
+                </div>
+                
+                <div class="p-6 space-y-6">
+                    <!-- Información Personal -->
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Información Personal</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600">Pasaporte</label>
+                                <p class="mt-1 text-gray-900">@incidencia.Pasaporte</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600">Nombre Completo</label>
+                                <p class="mt-1 text-gray-900">@incidencia.Nombre @incidencia.Apellido</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600">WhatsApp</label>
+                                <p class="mt-1 text-gray-900">@incidencia.WhatsApp</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600">Fecha de Nacimiento</label>
+                                <p class="mt-1 text-gray-900">@incidencia.FechaNacimiento.ToShortDateString()</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600">Nacionalidad</label>
+                                <p class="mt-1 text-gray-900">@(string.IsNullOrEmpty(incidencia.Nacionalidad) ? "No especificada" : incidencia.Nacionalidad)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ubicación -->
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Ubicación de Detención</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600">Latitud</label>
+                                <p class="mt-1 text-gray-900">@incidencia.Latitud</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600">Longitud</label>
+                                <p class="mt-1 text-gray-900">@incidencia.Longitud</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Estado y Observaciones -->
+                    <div>
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Estado y Observaciones</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600">Estado del Caso</label>
+                                <p class="mt-1">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
+                                        @(incidencia.EstadoCaso == "Pendiente" ? "bg-yellow-100 text-yellow-800" : 
+                                          incidencia.EstadoCaso == "Procesado" ? "bg-green-100 text-green-800" : 
+                                          "bg-gray-100 text-gray-800")">
+                                        @(string.IsNullOrEmpty(incidencia.EstadoCaso) ? "No especificado" : incidencia.EstadoCaso)
+                                    </span>
+                                </p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-600">Observaciones</label>
+                                <p class="mt-1 text-gray-900">@(string.IsNullOrEmpty(incidencia.Observaciones) ? "Sin observaciones" : incidencia.Observaciones)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Metadata -->
+                    <div class="border-t pt-4 mt-6">
+                        <div class="text-sm text-gray-500">
+                            <i class="far fa-calendar-alt mr-1"></i>
+                            Fecha de Registro: @incidencia.FechaRegistro.ToString("dd/MM/yyyy HH:mm")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+         <a href="/registro-incidencia"
+            class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 inline-block text-center">
+            Nueva Incidencia
+        </a>
+    </div>
+</div>
+
+@code {
+    private int? incidenciaId;
+    private List<IncidenciaResponseDto> incidencias;
+    private bool isLoading;
+    private string error;
+
+    private async Task BuscarIncidencia()
+    {
+        if (!incidenciaId.HasValue)
+        {
+            error = "Por favor, ingrese un ID de incidencia";
+            return;
+        }
+
+        try
+        {
+            isLoading = true;
+            error = null;
+            incidencias = null;
+
+            var response = await Http.GetAsync($"api/Incidencias/{incidenciaId}");
+            
+            if (response.IsSuccessStatusCode)
+            {
+                incidencias = await response.Content.ReadFromJsonAsync<List<IncidenciaResponseDto>>();
+                if (!incidencias.Any())
+                {
+                    error = $"No se encontró ninguna incidencia con el ID {incidenciaId}";
+                }
+            }
+            else
+            {
+                error = $"Error al buscar la incidencia con ID {incidenciaId}";
+            }
+        }
+        catch (Exception ex)
+        {
+            error = "Error al procesar la solicitud";
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    public class IncidenciaResponseDto
+    {
+        public int Id { get; set; }
+        public string Pasaporte { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string WhatsApp { get; set; }
+        public DateTime FechaNacimiento { get; set; }
+        public double Latitud { get; set; }
+        public double Longitud { get; set; }
+        public DateTime FechaRegistro { get; set; }
+        public string Nacionalidad { get; set; }
+        public string Observaciones { get; set; }
+        public string EstadoCaso { get; set; }
+    }
+}

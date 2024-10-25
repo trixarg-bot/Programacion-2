@@ -1,0 +1,140 @@
+﻿@page "/login"
+@* cambiar a login *@
+@using System.ComponentModel.DataAnnotations
+@using System.Net.Http.Json
+@inject HttpClient Http
+@using Blazored.LocalStorage
+@inject NavigationManager NavigationManager
+@inject ILocalStorageService LocalStorage
+
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-lg">
+        <div class="text-center">
+            <h2 class="text-3xl font-bold text-gray-900">Sistema de Migración</h2>
+            <p class="mt-2 text-sm text-gray-600">Ingrese sus credenciales</p>
+        </div>
+
+        <EditForm Model="@loginModel" OnValidSubmit="HandleLogin" class="mt-8 space-y-6">
+            <DataAnnotationsValidator />
+
+            <div class="rounded-md shadow-sm space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Cédula o Correo
+                    </label>
+                    <InputText 
+                        @bind-Value="loginModel.Identificacion"
+                        class="appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Ingrese su cédula o correo" />
+                    <ValidationMessage For="@(() => loginModel.Identificacion)" class="text-red-500 text-sm" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">
+                        Contraseña
+                    </label>
+                    <InputText 
+                        @bind-Value="loginModel.Clave"
+                        type="password"
+                        class="appearance-none relative block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Ingrese su contraseña" />
+                    <ValidationMessage For="@(() => loginModel.Clave)" class="text-red-500 text-sm" />
+                </div>
+            </div>
+
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+                    @errorMessage
+                </div>
+            }
+
+            <button type="submit" disabled="@isLoading" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                @if (isLoading)
+                {
+                    <span>Iniciando sesión...</span>
+                }
+                else
+                {
+                    <span>Iniciar Sesión</span>
+                }
+            </button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private LoginModel loginModel = new();
+    private string errorMessage = string.Empty;
+    private bool isLoading = false;
+
+    private async Task HandleLogin()
+    {
+        try
+        {
+            isLoading = true;
+            errorMessage = string.Empty;
+
+            Console.WriteLine($"Enviando solicitud a: {Http.BaseAddress}api/Usuarios/login");
+            
+            var response = await Http.PostAsJsonAsync("api/Usuarios/login", loginModel);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                var usuario = await response.Content.ReadFromJsonAsync<UsuarioResponse>();
+                if (usuario != null)
+                {
+                    await LocalStorage.SetItemAsync("user", usuario);
+                    NavigationManager.NavigateTo("/perfil-agente");
+                }
+                else
+                {
+                    errorMessage = "Error al procesar la respuesta del servidor";
+                }
+            }
+            else
+            {
+                var error = await response.Content.ReadAsStringAsync();
+
+                if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    errorMessage = "La cédula, correo o contraseña son incorrectos";
+                }
+                else
+                {
+                    errorMessage = $"Error: {error}";
+                }
+
+                Console.WriteLine($"Error response: {error}");
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al iniciar sesión: {ex.Message}";
+            Console.WriteLine($"Exception: {ex}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    public class LoginModel
+    {
+        [Required(ErrorMessage = "Este campo es requerido")]
+        public string Identificacion { get; set; }
+
+        [Required(ErrorMessage = "Este campo es requerido")]
+        public string Clave { get; set; }
+    }
+
+    public class UsuarioResponse
+    {
+        public int Id { get; set; }
+        public string Cedula { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Telefono { get; set; }
+        public string Correo { get; set; }
+    }
+}
