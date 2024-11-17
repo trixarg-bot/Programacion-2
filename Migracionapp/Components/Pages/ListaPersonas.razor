@@ -1,0 +1,68 @@
+@page "/lista-detenidos"
+@using Models
+@using Microsoft.EntityFrameworkCore
+@rendermode InteractiveServer
+@inject NavigationManager NavigationManager
+@inject Migracionapp.Data.ApplicationDbContext _context
+
+
+<h3> Lista de Personad Detenidas</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fecha de detencion </th>
+            <th>Nombre y Apellido</th>
+            <th>Numero de Pasaporte</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Latitud</th>
+            <th>Longitud</th>
+        </tr>
+        <body>
+            @foreach (var detenido in detenidos)
+            {
+                <tr> @detenido.FechaDetencion.ToShortDateString()</tr>
+                <tr>@detenido.NombreCompleto</tr>
+                <tr>@detenido.NumeroPasaporte</tr>
+                <tr>@detenido.FechaNacimiento.ToShortDateString()</tr>
+                <tr>@detenido.Latitud</tr>
+                <tr>@detenido.Longitud</tr>
+                <td>
+                    <button class="btn btn-primary" @onclick="() => EditarDetnido(detenido.Id)">Editar</button>
+                    <button class="btn btn-primary" @onclick="() => EliminarDetenido(detenido)">Eliminar</button>
+                </td>
+            }
+        </body>
+    </thead>
+</table>
+
+
+
+@code {
+    private List<Detenido> detenidos = new List<Detenido>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        detenidos = await _context.detenidos.ToListAsync();
+    }
+
+    private void EditarDetnido(int id)
+    {
+        NavigationManager.NavigateTo($"/registrar-detencion/{id}");
+    }
+
+    private async Task EliminarDetenido(Detenido detenido)
+    {
+        try
+        {
+            _context.detenidos.Remove(detenido);
+            await _context.SaveChangesAsync();
+            detenidos = await _context.detenidos.ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error al eliminar la detencion: {ex.Message}");
+        }
+    }
+
+}

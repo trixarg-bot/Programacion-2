@@ -1,0 +1,129 @@
+@page "/registrar-detencion/{Id:int?}"
+@using Microsoft.EntityFrameworkCore
+@using Models
+@inject Migracionapp.Data.ApplicationDbContext _context
+@rendermode InteractiveServer
+@inject NavigationManager NavigationManager
+
+<h3>@tituloFormulario</h3>
+
+<div class="card shadow mb-4">
+    <div class="card-header bg-primary text-white">
+        @tituloFormulario
+    </div>
+    <div class="card-body">
+        <EditForm Model="nuevoDetenido" OnValidSubmit="@(editando ? ActualizarDetencion : RegistrarDetencion)" >
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label>📅 Fecha de la Detención:</label>
+                    <InputDate class="form-control" @bind-Value="nuevoDetenido.FechaDetencion" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>👤 Nombre y Apellido:</label>
+                    <InputText class="form-control" @bind-Value="nuevoDetenido.NombreCompleto" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>🛂 Número de Pasaporte:</label>
+                    <InputText class="form-control" @bind-Value="nuevoDetenido.NumeroPasaporte" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>🎂 Fecha de Nacimiento:</label>
+                    <InputDate class="form-control" @bind-Value="nuevoDetenido.FechaNacimiento" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>📍 Latitud de la Detención:</label>
+                    <InputNumber class="form-control" @bind-Value="nuevoDetenido.Latitud" />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label>📍 Longitud de la Detención:</label>
+                    <InputNumber class="form-control" @bind-Value="nuevoDetenido.Longitud" />
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-success mt-3">@botonFormulario</button>
+                <button type="button" class="btn btn-secondary mt-3" @onclick="CancelarRegistro">Cancelar</button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private Detenido nuevoDetenido = new Detenido();
+    private bool editando = false;
+    private string tituloFormulario = "Registrar Nueva Detención";
+    private string botonFormulario = "Guardar";
+
+    [Parameter]
+    public int? Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+{
+    if (Id != null)
+    {
+        editando = true;
+        tituloFormulario = "Editar Detención";
+        botonFormulario = "Actualizar";
+        nuevoDetenido = await _context.detenidos.FindAsync(Id) ?? new Detenido();
+    }
+    else
+    {
+        InicializarPropiedades();
+    }
+}
+
+    private async Task RegistrarDetencion()
+    {
+        try
+        {
+            _context.detenidos.Add(nuevoDetenido);
+            await _context.SaveChangesAsync();
+            NavigationManager.NavigateTo("/lista-detenidos");
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error al registrar la detención: {ex.Message}");
+        }
+    }
+
+    private async Task ActualizarDetencion()
+    {
+        try
+        {
+            _context.detenidos.Update(nuevoDetenido);
+            await _context.SaveChangesAsync();
+            NavigationManager.NavigateTo("/lista-detenidos");
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error al actualizar la detención: {ex.Message}");
+        }
+    }
+
+    private void CancelarRegistro()
+    {
+        NavigationManager.NavigateTo("/lista-detenidos");
+    }
+
+    private void InicializarPropiedades()
+    {
+        nuevoDetenido = new Detenido
+            {
+                FechaDetencion = DateTime.Today,
+                NombreCompleto = string.Empty,
+                NumeroPasaporte = string.Empty,
+                FechaNacimiento = DateTime.Today,
+                Latitud = 0.0,
+                Longitud = 0.0
+            };
+    }
+}
+
