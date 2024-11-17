@@ -1,0 +1,26 @@
+@* <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="DetenidosMigracion.styles.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="_content/Radzen.Blazor/css/default-base.css">
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha384-1A5ciqwdjksxdv9ZzVw+oi7qLvR6Jwkv/synP1tD03hA6MzUarD4M1yu6K7LP1La" crossorigin="" />
+    <HeadOutlet />
+</head>
+
+<body>
+    <div id="app">
+        <component type="typeof(App)" render-mode="ServerPrerendered" />
+    </div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha384-ZWfDpXAq0N5Br4jxRpjKsm4BJmlIksRYfTPRznIGXZzK1w7dfu2HbMAAHT+S8NKM" crossorigin=""></script>
+    <script src="_framework/blazor.server.js"></script>
+    <script src="/js/mapa.js"></script>
+</body>
+
+</html> *@

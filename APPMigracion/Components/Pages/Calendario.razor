@@ -1,0 +1,49 @@
+﻿@page "/calendar"
+@using Models
+@rendermode InteractiveServer
+@inject DetentionService detentionService
+@inject IJSRuntime JSRuntime
+
+<div id="calendar" @ref="calendarElement"></div>
+
+@code {
+    private List<CalendarEvent> Detenciones { get; set; }
+    private bool _isInitialized = false;
+    private ElementReference calendarElement;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Obtener los datos de las detenciones desde el servicio
+        Detenciones = detentionService.GetDetentionsAsEvents();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && !_isInitialized)
+        {
+            _isInitialized = true; // Asegurar que solo inicializamos una vez
+            await InitializeCalendar();
+        }
+    }
+
+    private async Task InitializeCalendar()
+    {
+        var events = Detenciones.Select(d => new
+        {
+            id = d.Id,
+            title = d.Title,
+            description = d.Description,
+            startDate = d.StartDate,
+            endDate = d.EndDate,
+            color = d.Color
+        }).ToList();
+
+        // Llamar a la función JavaScript para inicializar el calendario
+        await JSRuntime.InvokeVoidAsync("initializeCalendar", calendarElement, events);
+    }
+}
+
+
+
+
+

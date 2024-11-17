@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "MigracionBlazor",
   "resources": {
-    "hash": "sha256-+nD/1cUo7TrKv3RlPZ+WtzG93cpOnHUqiarT42/bgD0=",
+    "hash": "sha256-VqPCCQjNwlHeRTB2PcBazrbgADAKViECc/h9yY+sM28=",
     "jsModuleNative": {
       "dotnet.native.8.0.7.6tjz90gkbg.js": "sha256-tFsxPBbhkdn6GKNBKvCRLzrfAHdyM86odYTe0MtrwMk="
     },
@@ -209,10 +209,10 @@
       "mscorlib.wasm": "sha256-fLbZiSHBNdpHoh4EgRqMaNP5NQyIK5TEj6AXFLqo8m8=",
       "netstandard.wasm": "sha256-d4xbAE8qrKq5euUoZHPO+jkYPjlCYBzUew45MKsYKic=",
       "System.Private.CoreLib.wasm": "sha256-8yi6NcX1lkNQgV4WKjnMBYIZyKh4P+OXnXVQmgxGZD4=",
-      "MigracionBlazor.wasm": "sha256-VssmX/gQYRDrJgv3Hk8MQ3AdXBXxBNFOGwaZGQPVdl4="
+      "MigracionBlazor.wasm": "sha256-Rvg2nRfnkzI4UdACmOmFXbpowhL2sFFgjgi8MS2/Y9Q="
     },
     "pdb": {
-      "MigracionBlazor.pdb": "sha256-YN+iVBDr46YvJ7+3sCVo3gnHdUP3MuZqzr9LppevqJ0="
+      "MigracionBlazor.pdb": "sha256-5Ezjwj3coUkeTDYQoR6dkShxuYE3aVttJ5PNVBr4y0g="
     }
   },
   "cacheBootResources": true,

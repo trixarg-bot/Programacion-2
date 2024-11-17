@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/obj/Debug/net8.0/scopedcss/projectbundle/DetenidosMigracion.bundle.scp.css",
+      "PackagePath": "staticwebassets/DetenidosMigracion.bundle.scp.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/wwwroot/app.css",
+      "PackagePath": "staticwebassets/app.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/wwwroot/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/wwwroot/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/wwwroot/js/map.js",
+      "PackagePath": "staticwebassets/js/map.js"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.DetenidosMigracion.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.DetenidosMigracion.props",
+      "PackagePath": "build\\DetenidosMigracion.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.DetenidosMigracion.props",
+      "PackagePath": "buildMultiTargeting\\DetenidosMigracion.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.DetenidosMigracion.props",
+      "PackagePath": "buildTransitive\\DetenidosMigracion.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

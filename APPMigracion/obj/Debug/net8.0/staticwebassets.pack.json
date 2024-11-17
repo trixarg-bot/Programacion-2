@@ -1,0 +1,49 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/APPMigracion/obj/Debug/net8.0/scopedcss/projectbundle/APPMigracion.bundle.scp.css",
+      "PackagePath": "staticwebassets/APPMigracion.bundle.scp.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/APPMigracion/wwwroot/app.css",
+      "PackagePath": "staticwebassets/app.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/APPMigracion/wwwroot/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/APPMigracion/wwwroot/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/APPMigracion/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/APPMigracion/wwwroot/js/Calendar.js",
+      "PackagePath": "staticwebassets/js/Calendar.js"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/APPMigracion/wwwroot/js/map.js",
+      "PackagePath": "staticwebassets/js/map.js"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.APPMigracion.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.APPMigracion.props",
+      "PackagePath": "build\\APPMigracion.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.APPMigracion.props",
+      "PackagePath": "buildMultiTargeting\\APPMigracion.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.APPMigracion.props",
+      "PackagePath": "buildTransitive\\APPMigracion.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

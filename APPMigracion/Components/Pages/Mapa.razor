@@ -1,0 +1,155 @@
+﻿@page "/mapa"
+@using Models
+@inject APPMigracion.Data.ApplicationDbContext _context
+@using Microsoft.EntityFrameworkCore;
+@inject IJSRuntime JSRuntime
+@rendermode InteractiveServer
+
+<div class="container">
+    <h2>Mapa de Detenciones</h2>
+    <div class="map-container">
+        <div id="map" @ref="mapElement" style="height: 600px;"></div>
+    </div>
+    
+    @if (selectedDetention != null)
+    {
+        <div class="info-panel">
+            <h4>Detalles de la Detención</h4>
+            <p><strong>Nombre:</strong> @selectedDetention.NombreCompleto</p>
+            <p><strong>Fecha:</strong> @selectedDetention.FechaDetencion.ToShortDateString()</p>
+            <p><strong>Pasaporte:</strong> @selectedDetention.NumeroPasaporte</p>
+        </div>
+    }
+</div>
+
+@code {
+    private ElementReference mapElement;
+    private List<Detenido> detenciones = new();
+    private Detenido selectedDetention;
+
+    protected override async Task OnInitializedAsync()
+    {
+        detenciones = await _context.detenidos.ToListAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await InitializeMap();
+        }
+    }
+
+    private async Task InitializeMap()
+    {
+        await JSRuntime.InvokeVoidAsync("initializeDetentionMap", mapElement, detenciones);
+    }
+
+    [JSInvokable]
+    public void OnMarkerClick(int detentionId)
+    {
+        selectedDetention = detenciones.FirstOrDefault(d => d.Id == detentionId);
+        StateHasChanged();
+    }
+}
+
+@* @inject IJSRuntime JSRuntime
+@rendermode InteractiveServer
+
+<PageTitle>Mapa Interactivo - República Dominicana</PageTitle>
+
+<div class="container">
+    <h1>Mapa Interactivo de la República Dominicana</h1>
+    
+    <div class="map-controls mb-3">
+        <select class="form-select" @bind="selectedLayer">
+            <option value="street">Vista Calles</option>
+            <option value="satellite">Vista Satélite</option>
+            <option value="terrain">Vista Terreno</option>
+        </select>
+    </div>
+
+    <div id="map" style="height: 600px;" @ref="mapElement"></div>
+
+    @if (selectedLocation != null)
+    {
+        <div class="location-info mt-3">
+            <h3>@selectedLocation.Name</h3>
+            <p>@selectedLocation.Description</p>
+        </div>
+    }
+</div>
+
+@code {
+    private ElementReference mapElement;
+    private string selectedLayer = "street";
+    private Location selectedLocation;
+    private List<Location> locations = new List<Location>
+    {
+        new Location { 
+            Name = "Santo Domingo", 
+            Lat = 18.4861, 
+            Lng = -69.9312, 
+            Description = "Capital de la República Dominicana" 
+        },
+        new Location { 
+            Name = "Punta Cana", 
+            Lat = 18.5601, 
+            Lng = -68.3725, 
+            Description = "Destino turístico famoso por sus playas" 
+        },
+        new Location { 
+            Name = "Santiago", 
+            Lat = 19.4517, 
+            Lng = -70.6970, 
+            Description = "Segunda ciudad más grande del país" 
+        },
+        new Location { 
+            Name = "Puerto Plata", 
+            Lat = 19.7934, 
+            Lng = -70.6884, 
+            Description = "Important destino turístico del norte" 
+        },
+        // Puedes agregar más ubicaciones aquí
+    };
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await InitializeMap();
+        }
+    }
+
+    private async Task InitializeMap()
+    {
+        await JSRuntime.InvokeVoidAsync("initializeMap", mapElement, locations);
+    }
+
+    public class Location
+    {
+        public string Name { get; set; }
+        public double Lat { get; set; }
+        public double Lng { get; set; }
+        public string Description { get; set; }
+    }
+}
+
+<style>
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .map-controls {
+        width: 200px;
+    }
+
+    .location-info {
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+</style> *@

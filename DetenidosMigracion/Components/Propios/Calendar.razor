@@ -1,0 +1,62 @@
+@rendermode InteractiveServer
+
+
+@code
+{
+    [Parameter]
+
+    public List<Detenido> Detenidos {get; set; } = new  List<Detenido>();
+    
+    private DateTime currentMonth = DateTime.Now;
+    private int daysInMonth;
+    private DateTime firstDayOfMonth;
+
+    protected override void OnInitialized(){
+
+        SetMonthData();
+
+    }
+
+    private void SetMonthData()
+    {
+        firstDayOfMonth = new DateTime(currentMonth.Year, currentMonth.Month, 1);
+        daysInMonth = DateTime.DaysInMonth(currentMonth.Year, currentMonth.Month);
+    }
+
+    private void PreviousMonth()
+    {
+        currentMonth = currentMonth.AddMonths(-1);
+        SetMonthData();
+    }
+
+    private void NextMonth()
+    {
+        currentMonth = currentMonth.AddMonths(1);
+        SetMonthData();
+        
+    }
+    private int GetDetentionCountByDay(int day)
+    {
+        return Detenidos
+            .Count(d => d.FechaDetencion.Year == currentMonth.Year &&
+                        d.FechaDetencion.Month == currentMonth.Month &&
+                        d.FechaDetencion.Day == day);
+    }
+
+}
+
+<div class="calendar">
+    <button @onclick="PreviousMonth">Anterior</button>
+    <span>@currentMonth.ToString("MMMM yyyy")</span>
+    <button @onclick="NextMonth">Siguiente</button>
+
+    <div class="calendar-grid">
+        @for (int day = 1; day <= daysInMonth; day++)
+        {
+            <div class="calendar-cell">
+                <span>@day</span>
+                <span>@GetDetentionCountByDay(day) detenidos</span>
+            </div>
+        }
+    </div>
+</div>

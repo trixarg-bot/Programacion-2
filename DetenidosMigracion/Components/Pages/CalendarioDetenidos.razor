@@ -1,0 +1,18 @@
+@page "/calendario"
+@rendermode InteractiveServer
+@inject DetenidosMigracion.Data.ApplicationDbContext _context
+@using Microsoft.EntityFrameworkCore;
+@rendermode InteractiveServer
+
+<h3>Calendario de Detenciones</h3>
+
+<Calendar Detenidos="detenidos" />
+
+@code {
+    private List<Detenido> detenidos = new List<Detenido>();
+    
+    protected override async Task OnInitializedAsync()
+    {
+        detenidos = await _context.detenidos.ToListAsync();
+    }
+}    

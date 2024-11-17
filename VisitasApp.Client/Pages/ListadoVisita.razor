@@ -1,0 +1,105 @@
+@page "/listado"
+@using System.Net.Http.Json
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<div class="visits-container">
+    <div class="table-container">
+        <div class="table-header">
+            <h2 class="table-title">Listado de Visitas</h2>
+            <button 
+                @onclick="@(() => NavigationManager.NavigateTo("/registro"))"
+                class="btn btn-primary">
+                Nueva Visita
+            </button>
+        </div>
+
+        @if (isLoading)
+        {
+            <div class="text-center py-8">
+                <div class="loading-spinner">
+                    <span class="spinner"></span>
+                    <span>Cargando...</span>
+                </div>
+            </div>
+        }
+        else if (!string.IsNullOrEmpty(error))
+        {
+            <div class="status-message error">
+                @error
+            </div>
+        }
+        else if (visitas == null || !visitas.Any())
+        {
+            <div class="empty-state">
+                No hay visitas registradas
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="visits-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha/Hora</th>
+                            <th>Nombre Completo</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var visita in visitas)
+                        {
+                            <tr>
+                                <td>@visita.FechaRegistro.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@visita.Nombre @visita.Apellido</td>
+                                <td>@visita.Telefono</td>
+                                <td>@visita.Correo</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private List<VisitaDto> visitas;
+    private bool isLoading = true;
+    private string error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarVisitas();
+    }
+
+    private async Task CargarVisitas()
+    {
+        try
+        {
+            isLoading = true;
+            error = null;
+            visitas = await Http.GetFromJsonAsync<List<VisitaDto>>("api/Visitas");
+        }
+        catch (Exception ex)
+        {
+            error = "Error al cargar las visitas";
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    public class VisitaDto
+    {
+        public int Id { get; set; }
+        public string Telefono { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Correo { get; set; }
+        public DateTime FechaRegistro { get; set; }
+    }
+}

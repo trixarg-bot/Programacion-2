@@ -1,0 +1,33 @@
+@page "/detencion-detalle/{Id:int}"
+@using DetenidosMigracion.Models
+@inject DetenidosMigracion.Data.ApplicationDbContext _context
+@rendermode InteractiveServer
+
+<h3>Detalles de la Detención</h3>
+
+@if (detencion != null)
+{
+    <div>
+        <p><strong>Fecha de la Detención:</strong> @detencion.FechaDetencion.ToShortDateString()</p>
+        <p><strong>Nombre y Apellido:</strong> @detencion.NombreCompleto</p>
+        <p><strong>Número de Pasaporte:</strong> @detencion.NumeroPasaporte</p>
+        <p><strong>Fecha de Nacimiento:</strong> @detencion.FechaNacimiento.ToShortDateString()</p>
+        <p><strong>Latitud:</strong> @detencion.Latitud</p>
+        <p><strong>Longitud:</strong> @detencion.Longitud</p>
+    </div>
+}
+else
+{
+    <p>Detención no encontrada.</p>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private Detenido detencion;
+
+    protected override async Task OnInitializedAsync()
+    {
+        detencion = await _context.detenidos.FindAsync(Id);
+    }
+}

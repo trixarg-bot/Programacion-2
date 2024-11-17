@@ -1,0 +1,151 @@
+@page "/registro"
+@using System.Net.Http.Json
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@using System.ComponentModel.DataAnnotations
+
+<div class="visits-container">
+    <div class="form-container">
+        <div class="form-header">
+            <h2 class="form-title">Registro de Visita</h2>
+        </div>
+
+        <EditForm Model="@visitaModel" OnValidSubmit="RegistrarVisita">
+            <DataAnnotationsValidator />
+
+            <div class="form-group">
+                <label class="form-label">Teléfono</label>
+                <InputText 
+                    @bind-Value="visitaModel.Telefono" 
+                    class="form-input" 
+                    placeholder="Ingrese el teléfono" />
+                <ValidationMessage For="@(() => visitaModel.Telefono)" class="validation-message" />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Nombre</label>
+                <InputText 
+                    @bind-Value="visitaModel.Nombre" 
+                    class="form-input" 
+                    placeholder="Ingrese el nombre" />
+                <ValidationMessage For="@(() => visitaModel.Nombre)" class="validation-message" />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Apellido</label>
+                <InputText 
+                    @bind-Value="visitaModel.Apellido" 
+                    class="form-input" 
+                    placeholder="Ingrese el apellido" />
+                <ValidationMessage For="@(() => visitaModel.Apellido)" class="validation-message" />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Correo Electrónico</label>
+                <InputText 
+                    @bind-Value="visitaModel.Correo" 
+                    class="form-input" 
+                    placeholder="Ingrese el correo" />
+                <ValidationMessage For="@(() => visitaModel.Correo)" class="validation-message" />
+            </div>
+
+            @if (!string.IsNullOrEmpty(mensajeExito))
+            {
+                <div class="status-message success">
+                    @mensajeExito
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(mensajeError))
+            {
+                <div class="status-message error">
+                    @mensajeError
+                </div>
+            }
+
+            <div class="button-container">
+                <button 
+                    type="submit" 
+                    disabled="@isLoading"
+                    class="btn btn-primary">
+                    @if (isLoading)
+                    {
+                        <span class="loading-spinner">
+                            <span class="spinner"></span>
+                            <span>Registrando...</span>
+                        </span>
+                    }
+                    else
+                    {
+                        <span>Registrar Visita</span>
+                    }
+                </button>
+
+                <button 
+                    type="button"
+                    @onclick="@(() => NavigationManager.NavigateTo("/listado"))"
+                    class="btn btn-secondary">
+                    Ver Listado
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private RegistroVisitaModel visitaModel = new();
+    private bool isLoading;
+    private string mensajeExito = string.Empty;
+    private string mensajeError = string.Empty;
+
+    private async Task RegistrarVisita()
+    {
+        try
+        {
+            isLoading = true;
+            mensajeExito = string.Empty;
+            mensajeError = string.Empty;
+
+            var response = await Http.PostAsJsonAsync("api/Visitas", visitaModel);
+
+            if (response.IsSuccessStatusCode)
+            {
+                mensajeExito = "Visita registrada exitosamente";
+                visitaModel = new RegistroVisitaModel();
+            }
+            else
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                mensajeError = $"Error: {error}";
+            }
+        }
+        catch (Exception ex)
+        {
+            mensajeError = "Error al registrar la visita";
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    public class RegistroVisitaModel
+    {
+        [Required(ErrorMessage = "El teléfono es requerido")]
+        [Phone(ErrorMessage = "Formato de teléfono inválido")]
+        public string Telefono { get; set; }
+
+        [Required(ErrorMessage = "El nombre es requerido")]
+        [StringLength(50, ErrorMessage = "El nombre no debe exceder los 50 caracteres")]
+        public string Nombre { get; set; }
+
+        [Required(ErrorMessage = "El apellido es requerido")]
+        [StringLength(50, ErrorMessage = "El apellido no debe exceder los 50 caracteres")]
+        public string Apellido { get; set; }
+
+        [Required(ErrorMessage = "El correo es requerido")]
+        [EmailAddress(ErrorMessage = "Formato de correo inválido")]
+        public string Correo { get; set; }
+    }
+}

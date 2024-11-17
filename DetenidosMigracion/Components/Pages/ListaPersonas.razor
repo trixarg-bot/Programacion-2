@@ -1,0 +1,67 @@
+@page "/lista-detenidos"
+@using DetenidosMigracion.Models
+@inject NavigationManager NavigationManager
+@inject DetenidosMigracion.Data.ApplicationDbContext _context
+@using Microsoft.EntityFrameworkCore;
+@rendermode InteractiveServer
+
+<h3>Lista de Personas Detenidas</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fecha de Detención</th>
+            <th>Nombre y Apellido</th>
+            <th>Número de Pasaporte</th>
+            <th>Fecha de Nacimiento</th>
+            <th>Latitud</th>
+            <th>Longitud</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detenido in detenidos)
+        {
+            <tr>
+                <td>@detenido.FechaDetencion.ToShortDateString()</td>
+                <td>@detenido.NombreCompleto</td>
+                <td>@detenido.NumeroPasaporte</td>
+                <td>@detenido.FechaNacimiento.ToShortDateString()</td>
+                <td>@detenido.Latitud</td>
+                <td>@detenido.Longitud</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="() => EditarDetenido(detenido.Id)">Editar</button>
+                    <button class="btn btn-danger" @onclick="async () => await EliminarDetenido(detenido)">Eliminar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<Detenido> detenidos = new List<Detenido>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        detenidos = await _context.detenidos.ToListAsync();
+    }
+
+    private void EditarDetenido(int id)
+    {
+        NavigationManager.NavigateTo($"/registrar-detencion/{id}");
+    }
+
+    private async Task EliminarDetenido(Detenido detenido)
+    {
+        try
+        {
+            _context.detenidos.Remove(detenido);
+            await _context.SaveChangesAsync();
+            detenidos = await _context.detenidos.ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.Error.WriteLine($"Error al eliminar la detención: {ex.Message}");
+        }
+    }
+}

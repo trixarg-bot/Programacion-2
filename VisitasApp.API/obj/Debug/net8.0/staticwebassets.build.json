@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "I5SrrUsAdL7/WEKSxz0UaEFuTba4HHA1SmCTj85Sb0s=",
+  "Source": "VisitasApp.API",
+  "BasePath": "_content/VisitasApp.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,83 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = DetenidosMigracion
+build_property.RootNamespace = DetenidosMigracion
+build_property.ProjectDir = /Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/App.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BcHAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/Pages/CalendarioDetenidos.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9DYWxlbmRhcmlvRGV0ZW5pZG9zLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Db3VudGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/Pages/DetencionDetalle.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9EZXRlbmNpb25EZXRhbGxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/Pages/Error.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9FcnJvci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/Pages/ListaPersonas.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9MaXN0YVBlcnNvbmFzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/Pages/MapaDetenciones.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9NYXBhRGV0ZW5jaW9uZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/Pages/Personas.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9QZXJzb25hcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/Pages/Weather.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9XZWF0aGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/Routes.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Sb3V0ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9fSW1wb3J0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTWFpbkxheW91dC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-nn378npjrb
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTmF2TWVudS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-risqs2jase
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/Propios/Calendar.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9Qcm9waW9zL0NhbGVuZGFyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-94noji0ka7
+
+[/Users/eduardoliriano/codigos/ProgramacionWeb/DetenidosMigracion/Components/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9fSG9zdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
