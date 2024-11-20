@@ -1,0 +1,30 @@
+@using DiarioDeJuegos.Services
+@inject ISessionService SessionService
+@inject NavigationManager NavigationManager
+
+@if (SessionService.IsAuthenticated())
+{
+    @ChildContent
+}
+else
+{
+    <div class="container mt-5">
+        <div class="alert alert-warning">
+            Debes iniciar sesión para acceder a esta página.
+            <a href="/login" class="alert-link">Haz clic aquí para iniciar sesión</a>.
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (!SessionService.IsAuthenticated())
+        {
+            NavigationManager.NavigateTo("/login");
+        }
+    }
+}

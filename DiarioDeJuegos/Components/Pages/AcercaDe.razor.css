@@ -1,0 +1,42 @@
+.developer-photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.developer-contact {
+    border-radius: 10px;
+}
+
+.developer-contact a {
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.developer-contact a:hover {
+    color: #0d6efd;
+}
+
+.technologies .badge {
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .developer-photo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .card-body {
+        padding: 2rem !important;
+    }
+}

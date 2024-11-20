@@ -1,0 +1,42 @@
+.developer-photo[b-w5ctjt1qwt] {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card[b-w5ctjt1qwt] {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.developer-contact[b-w5ctjt1qwt] {
+    border-radius: 10px;
+}
+
+.developer-contact a[b-w5ctjt1qwt] {
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.developer-contact a:hover[b-w5ctjt1qwt] {
+    color: #0d6efd;
+}
+
+.technologies .badge[b-w5ctjt1qwt] {
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .developer-photo[b-w5ctjt1qwt] {
+        width: 150px;
+        height: 150px;
+    }
+
+    .card-body[b-w5ctjt1qwt] {
+        padding: 2rem !important;
+    }
+}

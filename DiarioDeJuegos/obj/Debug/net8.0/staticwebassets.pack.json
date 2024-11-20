@@ -1,0 +1,69 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DiarioDeJuegos/obj/Debug/net8.0/scopedcss/projectbundle/DiarioDeJuegos.bundle.scp.css",
+      "PackagePath": "staticwebassets/DiarioDeJuegos.bundle.scp.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DiarioDeJuegos/wwwroot/Images/default-profile.jpeg",
+      "PackagePath": "staticwebassets/Images/default-profile.jpeg"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DiarioDeJuegos/wwwroot/Images/peeps-avatar-3.png",
+      "PackagePath": "staticwebassets/Images/peeps-avatar-3.png"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DiarioDeJuegos/wwwroot/app.css",
+      "PackagePath": "staticwebassets/app.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DiarioDeJuegos/wwwroot/bootstrap/bootstrap.min.css",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DiarioDeJuegos/wwwroot/bootstrap/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/bootstrap/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DiarioDeJuegos/wwwroot/favicon.png",
+      "PackagePath": "staticwebassets/favicon.png"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DiarioDeJuegos/wwwroot/uploads/0072fd34-02a9-4f1b-9665-367810c6fcf5.png",
+      "PackagePath": "staticwebassets/uploads/0072fd34-02a9-4f1b-9665-367810c6fcf5.png"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DiarioDeJuegos/wwwroot/uploads/26621a4f-0420-4a1f-b261-0e2780380c7d.png",
+      "PackagePath": "staticwebassets/uploads/26621a4f-0420-4a1f-b261-0e2780380c7d.png"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DiarioDeJuegos/wwwroot/uploads/6fbb0593-c279-42dc-bd81-5463c7c2d46c.jpeg",
+      "PackagePath": "staticwebassets/uploads/6fbb0593-c279-42dc-bd81-5463c7c2d46c.jpeg"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DiarioDeJuegos/wwwroot/uploads/8bd2b349-a8bb-4864-9507-df2668c026b0.jpg",
+      "PackagePath": "staticwebassets/uploads/8bd2b349-a8bb-4864-9507-df2668c026b0.jpg"
+    },
+    {
+      "Id": "/Users/eduardoliriano/codigos/ProgramacionWeb/DiarioDeJuegos/wwwroot/uploads/d5ae9a9e-9026-4e74-8894-e9bb7750c93a.png",
+      "PackagePath": "staticwebassets/uploads/d5ae9a9e-9026-4e74-8894-e9bb7750c93a.png"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.DiarioDeJuegos.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.DiarioDeJuegos.props",
+      "PackagePath": "build\\DiarioDeJuegos.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.DiarioDeJuegos.props",
+      "PackagePath": "buildMultiTargeting\\DiarioDeJuegos.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.DiarioDeJuegos.props",
+      "PackagePath": "buildTransitive\\DiarioDeJuegos.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,86 @@
+@page "/register"
+@using Blazored.Toast.Services
+@using System.ComponentModel.DataAnnotations
+@using DiarioDeJuegos.Services
+@inject IAuthService AuthService
+@inject NavigationManager NavigationManager
+@inject IToastService ToastService
+@rendermode InteractiveServer
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Crear Cuenta Nueva</h3>
+                </div>
+                <div class="card-body">
+                    <EditForm Model="@registroModel" OnValidSubmit="@HandleRegistration" FormName="registroForm">
+                        <DataAnnotationsValidator />
+
+                        <div class="form-group">
+                            <label>Nombre de Usuario:</label>
+                            <InputText @bind-Value="registroModel.Username" class="form-control" />
+                            <ValidationMessage For="@(() => registroModel.Username)" />
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label>Correo Electrónico:</label>
+                            <InputText @bind-Value="registroModel.Email" class="form-control" />
+                            <ValidationMessage For="@(() => registroModel.Email)" />
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label>Contraseña:</label>
+                            <InputText type="password" @bind-Value="registroModel.Password" class="form-control" />
+                            <ValidationMessage For="@(() => registroModel.Password)" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mt-4">Crear Cuenta</button>
+                    </EditForm>
+
+                    <div class="text-center mt-3">
+                        <a href="login">¿Ya tienes cuenta? Inicia sesión aquí</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private RegistroModel registroModel = new();
+
+    private async Task HandleRegistration()
+    {
+        var result = await AuthService.RegisterUser(
+            registroModel.Username,
+            registroModel.Email,
+            registroModel.Password);
+
+        if (result)
+        {
+            ToastService.ShowSuccess("¡Cuenta creada exitosamente!");
+            NavigationManager.NavigateTo("/login");
+        }
+        else
+        {
+            ToastService.ShowError("El usuario o correo ya existe");
+        }
+    }
+
+    public class RegistroModel
+    {
+        [Required(ErrorMessage = "El nombre de usuario es requerido")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "El nombre debe tener entre 3 y 50 caracteres")]
+        public string Username { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "El correo es requerido")]
+        [EmailAddress(ErrorMessage = "El correo no es válido")]
+        public string Email { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "La contraseña es requerida")]
+        [StringLength(100, MinimumLength = 6, ErrorMessage = "La contraseña debe tener al menos 6 caracteres")]
+        public string Password { get; set; } = string.Empty;
+    }
+}

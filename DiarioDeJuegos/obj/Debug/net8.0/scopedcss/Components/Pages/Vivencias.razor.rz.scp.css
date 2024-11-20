@@ -1,0 +1,100 @@
+.card[b-k74bz5tzzy] {
+    transition: transform 0.2s;
+}
+
+.card:hover[b-k74bz5tzzy] {
+    transform: translateY(-5px);
+}
+
+.card-title[b-k74bz5tzzy] {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.badge[b-k74bz5tzzy] {
+    font-size: 0.8rem;
+}
+
+.btn-outline-danger:hover[b-k74bz5tzzy] {
+    background-color: #dc3545;
+    color: white;
+}
+
+.modal[b-k74bz5tzzy] {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Animaciones para las tarjetas */
+.card[b-k74bz5tzzy] {
+    animation: fadeIn-b-k74bz5tzzy 0.5s ease-in;
+}
+
+@keyframes fadeIn-b-k74bz5tzzy {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilo para el botón de pánico */
+.btn-outline-danger[b-k74bz5tzzy] {
+    border-width: 2px;
+}
+
+/* Estilo para las imágenes por defecto */
+.card-img-top[b-k74bz5tzzy] {
+    background-color: #f8f9fa;
+}
+
+.card[b-k74bz5tzzy] {
+    border-radius: 10px;
+}
+
+.card-header[b-k74bz5tzzy] {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.form-control:focus[b-k74bz5tzzy] {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.validation-message[b-k74bz5tzzy] {
+    font-size: 0.875em;
+    color: #dc3545;
+}
+
+.img-thumbnail[b-k74bz5tzzy] {
+    transition: transform 0.2s;
+}
+
+.img-thumbnail:hover[b-k74bz5tzzy] {
+    transform: scale(1.05);
+}
+
+/* Estilos para el spinner de carga de imagen */
+.spinner-border[b-k74bz5tzzy] {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Animación de entrada del formulario */
+.card[b-k74bz5tzzy] {
+    animation: slideIn-b-k74bz5tzzy 0.3s ease-out;
+}
+
+@keyframes slideIn-b-k74bz5tzzy {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

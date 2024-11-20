@@ -1,0 +1,73 @@
+@page "/"
+@using Blazored.Toast.Services
+@using DiarioDeJuegos.Services
+@using System.ComponentModel.DataAnnotations
+@inject IAuthService AuthService
+@inject ISessionService SessionService
+@inject NavigationManager NavigationManager
+@inject IToastService ToastService
+@rendermode InteractiveServer
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Iniciar Sesión</h3>
+                </div>
+                <div class="card-body">
+                    <EditForm Model="@loginModel" OnValidSubmit="@HandleLogin" FormName="loginForm">
+                        <DataAnnotationsValidator />
+
+                        <div class="form-group">
+                            <label>Nombre de Usuario:</label>
+                            <InputText @bind-Value="loginModel.Username" class="form-control" />
+                            <ValidationMessage For="@(() => loginModel.Username)" />
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label>Contraseña:</label>
+                            <InputText type="password" @bind-Value="loginModel.Password" class="form-control" />
+                            <ValidationMessage For="@(() => loginModel.Password)" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mt-4">Iniciar Sesión</button>
+                    </EditForm>
+
+                    <div class="text-center mt-3">
+                        <a href="register">¿No tienes cuenta? Regístrate aquí</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private LoginModel loginModel = new();
+
+    private async Task HandleLogin()
+    {
+        var usuario = await AuthService.Login(loginModel.Username, loginModel.Password);
+
+        if (usuario != null)
+        {
+            await SessionService.LoginUser(usuario);
+            ToastService.ShowSuccess("¡Bienvenido de vuelta!");
+            NavigationManager.NavigateTo("/vivencias");
+        }
+        else
+        {
+            ToastService.ShowError("Usuario o contraseña incorrectos");
+        }
+    }
+
+    public class LoginModel
+    {
+        [Required(ErrorMessage = "El nombre de usuario es requerido")]
+        public string Username { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "La contraseña es requerida")]
+        public string Password { get; set; } = string.Empty;
+    }
+}

@@ -1,0 +1,187 @@
+@page "/vivencias"
+@using DiarioDeJuegos.Services
+@using DiarioDeJuegos.Models
+@using Blazored.Toast.Services
+@using Microsoft.EntityFrameworkCore
+@inject ISessionService SessionService
+@inject NavigationManager NavigationManager
+@inject IToastService ToastService
+@inject DiarioDeJuegos.Data.ApplicationDbContext DbContext
+
+<AuthView>
+    <div class="container my-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Mis Vivencias de Juegos 🎮</h2>
+            <button class="btn btn-primary" @onclick="@(() => NavigationManager.NavigateTo("/nueva-vivencia"))">
+                <i class="bi bi-plus-circle-fill"></i> Nueva Vivencia
+            </button>
+        </div>
+
+        @if (mostrarDialogoPanico)
+        {
+            <div class="modal fade show" style="display: block;" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-danger">⚠️ Confirmar Borrado</h5>
+                            <button type="button" class="btn-close" @onclick="CerrarDialogoPanico"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-warning">
+                                <strong>¡Atención!</strong> Esta acción borrará todas tus vivencias.
+                            </div>
+                            <p>Para confirmar, ingresa tu contraseña:</p>
+                            <input type="password" class="form-control" @bind="passwordConfirmacion" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" @onclick="CerrarDialogoPanico">Cancelar</button>
+                            <button type="button" class="btn btn-danger" @onclick="BorrarTodasLasVivencias">
+                                Confirmar Borrado
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-backdrop fade show"></div>
+        }
+
+        <div class="alert alert-info mb-4 d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mb-0">🔒 Tus vivencias están seguras</h5>
+                <small>Solo tú puedes ver tus experiencias</small>
+            </div>
+            <button class="btn btn-outline-danger" @onclick="MostrarDialogoPanico">
+                🚨 Borrar Todo
+            </button>
+        </div>
+
+        @if (cargando)
+        {
+            <div class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+            </div>
+        }
+        else if (!vivencias.Any())
+        {
+            <div class="text-center py-5">
+                <div class="display-6 mb-3">📝</div>
+                <h3>¡Aún no tienes vivencias registradas!</h3>
+                <p class="text-muted">Comparte tu primera experiencia con los videojuegos</p>
+                <button class="btn btn-primary mt-3" @onclick="@(() => NavigationManager.NavigateTo("/nueva-vivencia"))">
+                    Crear Mi Primera Vivencia
+                </button>
+            </div>
+        }
+        else
+        {
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                @foreach (var vivencia in vivencias)
+                {
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            @if (!string.IsNullOrEmpty(vivencia.ImagenUrl))
+                            {
+                                <img src="@vivencia.ImagenUrl" class="card-img-top" alt="@vivencia.Titulo"
+                                    style="height: 200px; object-fit: cover;">
+                            }
+                            else
+                            {
+                                <img src="/images/default-game.jpg" class="card-img-top" alt="Imagen por defecto"
+                                    style="height: 200px; object-fit: cover;">
+                            }
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h5 class="card-title mb-0">@vivencia.Titulo</h5>
+                                    <span class="badge bg-primary">@vivencia.Fecha.ToString("dd/MM/yyyy")</span>
+                                </div>
+                                <p class="card-text">@vivencia.Descripcion</p>
+                            </div>
+                            <div class="card-footer bg-transparent d-flex justify-content-between">
+                                <button class="btn btn-outline-primary btn-sm" @onclick="() => EditarVivencia(vivencia.Id)">
+                                    ✏️ Editar
+                                </button>
+                                <button class="btn btn-outline-danger btn-sm" @onclick="() => BorrarVivencia(vivencia.Id)">
+                                    🗑️ Borrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</AuthView>
+
+@code {
+    private List<Vivencia> vivencias = new();
+    private bool cargando = true;
+    private bool mostrarDialogoPanico = false;
+    private string? passwordConfirmacion;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await CargarVivencias();
+        }
+        finally
+        {
+            cargando = false;
+        }
+    }
+
+    private async Task CargarVivencias()
+    {
+        var usuarioId = SessionService.UsuarioActual?.Id ?? 0;
+        vivencias = await DbContext.Vivencias
+            .Where(v => v.UsuarioId == usuarioId)
+            .OrderByDescending(v => v.Fecha)
+            .ToListAsync();
+    }
+
+    private void MostrarDialogoPanico()
+    {
+        mostrarDialogoPanico = true;
+    }
+
+    private void CerrarDialogoPanico()
+    {
+        mostrarDialogoPanico = false;
+        passwordConfirmacion = null;
+    }
+
+    private async Task BorrarTodasLasVivencias()
+    {
+        // Aquí verificarías la contraseña antes de borrar
+        var usuarioId = SessionService.UsuarioActual?.Id ?? 0;
+        var vivenciasUsuario = await DbContext.Vivencias
+            .Where(v => v.UsuarioId == usuarioId)
+            .ToListAsync();
+
+        DbContext.Vivencias.RemoveRange(vivenciasUsuario);
+        await DbContext.SaveChangesAsync();
+
+        ToastService.ShowSuccess("Todas tus vivencias han sido borradas");
+        CerrarDialogoPanico();
+        await CargarVivencias();
+    }
+
+    private void EditarVivencia(int id)
+    {
+        NavigationManager.NavigateTo($"/editar-vivencia/{id}");
+    }
+
+    private async Task BorrarVivencia(int id)
+    {
+        var vivencia = await DbContext.Vivencias.FindAsync(id);
+        if (vivencia != null && vivencia.UsuarioId == SessionService.UsuarioActual?.Id)
+        {
+            DbContext.Vivencias.Remove(vivencia);
+            await DbContext.SaveChangesAsync();
+            ToastService.ShowSuccess("Vivencia eliminada con éxito");
+            await CargarVivencias();
+        }
+    }
+}
